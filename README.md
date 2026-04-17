@@ -1,4 +1,6 @@
-# Backend Programming Template (2025)
+# Quiz Backend Programming TI-D
+
+# 535250184 - Fikry Agustiyan
 
 ## Development Setup
 
@@ -10,9 +12,36 @@
 6. Run `npm run dev` to start the dev server.
 7. Test the endpoints in the API client app.
 
-## Add New API Endpoints
+## API Endpoints & Required Inputs
 
-1. Create a new database schema in `./src/models`.
-2. Create a new folder in `./src/api/components` (if needed). Remember to separate your codes to repositories, services, controllers, and routes.
-3. Add the new route in `./src/api/routes.js`.
-4. Test your new endpoints in the API client app.
+Berikut adalah daftar endpoint yang dapat diakses beserta input/parameter yang diperlukan:
+
+1. **Roll Gacha**
+
+   - **Endpoint:** `POST /api/gacha/roll`
+   - **Input / Parameter (Required):** Request Body format JSON berisi field `username`.
+     ```json
+     {
+       "username": "nama_user"
+     }
+     ```
+   - **Description:** Mengeksekusi undian gacha. Dibatasi maksimal 5 kali per user (username) per hari.
+
+2. **User History**
+
+   - **Endpoint:** `GET /api/gacha/history/:username`
+   - **Input / Parameter (Required):** URL Parameter `:username` berupa tipe data String.
+   - **Contoh Pemanggilan:** `/api/gacha/history/fikry`
+   - **Description:** Mengambil histori riwayat gacha untuk username tertentu.
+
+3. **Prize Catalog**
+
+   - **Endpoint:** `GET /api/prizes`
+   - **Input / Parameter:** Tidak memerlukan input/parameter.
+   - **Description:** Menampilkan daftar semua hadiah yang tersedia beserta sisa kuota masing-masing hadiah.
+
+4. **Winners List**
+
+   - **Endpoint:** `GET /api/prizes/winners`
+   - **Input / Parameter:** Tidak memerlukan input/parameter.
+   - **Description:** Menampilkan daftar seluruh user yang memenangkan hadiah. Nama user disamarkan secara otomatis.
