@@ -3,11 +3,13 @@ const { errorResponder, errorTypes } = require('../../../core/errors');
 
 async function roll(request, response, next) {
   try {
-    const { username } = request.body;
+    let { username } = request.body;
 
     if (!username) {
       throw errorResponder(errorTypes.VALIDATION_ERROR, 'Username di perlukan');
     }
+
+    username = username.toLowerCase();
 
     const result = await gachaService.rollGacha(username);
 
@@ -19,7 +21,9 @@ async function roll(request, response, next) {
 
 async function history(request, response, next) {
   try {
-    const { username } = request.params;
+    let { username } = request.params;
+
+    username = username.toLowerCase();
 
     const historyData = await gachaService.getHistoryByUsername(username);
 
